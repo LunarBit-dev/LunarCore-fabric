@@ -1,0 +1,44 @@
+{
+	"schemaVersion": 1,
+	"id": "lunarcore",
+	"version": "${version}",
+	"name": "LunarCore",
+	"description": "A lightweight foundational SDK for Minecraft Fabric mods. Provides lifecycle helpers, config abstraction, logger wrapper, event utilities, safe task scheduling, and update checking.",
+	"authors": [
+		"LunarBit Studios"
+	],
+	"contact": {
+		"homepage": "https://github.com/LunarBit-dev/LunarCore-spec",
+		"sources": "https://github.com/LunarBit-dev/LunarCore-spec"
+	},
+	"license": "MIT",
+	"icon": "assets/lunarcore/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"dev.lunarbit.lunarcore.Lunarcore"
+		],
+		"client": [
+			"dev.lunarbit.lunarcore.LunarcoreClient"
+		],
+		"server": [
+			"dev.lunarbit.lunarcore.LunarcoreServer"
+		],
+		"fabric-datagen": [
+			"dev.lunarbit.lunarcore.LunarcoreDataGenerator"
+		]
+	},
+	"mixins": [
+		"lunarcore.mixins.json",
+		{
+			"config": "lunarcore.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.18.3",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}

@@ -1,0 +1,35 @@
+# Build files
+.gradle/
+build/
+out/
+bin/
+
+# IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.project
+.classpath
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Minecraft run directory
+run/
+logs/
+
+# Temporary files
+*.tmp
+*.log
+temp-spec/
+
+# Gradle wrapper (keep gradle wrapper jar)
+!gradle/wrapper/gradle-wrapper.jar
+
