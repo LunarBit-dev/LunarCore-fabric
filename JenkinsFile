@@ -23,6 +23,14 @@ pipeline {
                 sh './gradlew clean build'
             }
         }
+
+        stage('Publish to GitHub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'github-packages', usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_TOKEN')]) {
+                    sh './gradlew publish -PgithubUser=$GITHUB_USER -PgithubToken=$GITHUB_TOKEN'
+                }
+            }
+        }
     }
 
     post {
