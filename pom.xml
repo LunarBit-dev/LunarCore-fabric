@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>dev.lunarbit.lunarcore</groupId>
+    <artifactId>lunarcore</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>LunarCore</name>
+    <description>A Fabric mod for Minecraft</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <minecraft.version>1.21.11</minecraft.version>
+        <fabric.loader.version>0.18.3</fabric.loader.version>
+        <fabric.api.version>0.140.2+1.21.11</fabric.api.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>minecraft-libraries</id>
+            <name>Minecraft Libraries</name>
+            <url>https://libraries.minecraft.net</url>
+        </repository>
+        <repository>
+            <id>fabric-maven</id>
+            <name>Fabric Maven</name>
+            <url>https://maven.fabricmc.net/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- Minecraft -->
+        <dependency>
+            <groupId>com.mojang</groupId>
+            <artifactId>minecraft</artifactId>
+            <version>${minecraft.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Fabric Loader -->
+        <dependency>
+            <groupId>net.fabricmc</groupId>
+            <artifactId>fabric-loader</artifactId>
+            <version>${fabric.loader.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Fabric API -->
+        <dependency>
+            <groupId>net.fabricmc.fabric-api</groupId>
+            <artifactId>fabric-api</artifactId>
+            <version>${fabric.api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                    <release>21</release>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <nonFilteredFileExtensions>
+                        <nonFilteredFileExtension>zip</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>jar</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
