@@ -1,31 +1,37 @@
 pipeline {
-  agent any
+    agent any
 
-  tools {
-    jdk 'jdk21'
-    maven 'Maven'
-  }
-
-  stages {
-    stage('Checkout') {
-      steps {
-        checkout scm
-      }
+    tools {
+        jdk 'jdk21'
     }
 
-    stage('Build') {
-      steps {
-        sh 'mvn clean package'
-      }
-    }
-  }
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
 
-  post {
-    success {
-      echo 'Build Successful'
+        stage('Grant Gradle Permissions') {
+            steps {
+                sh 'chmod +x ./gradlew'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh './gradlew clean build'
+            }
+        }
     }
-    failure {
-      echo 'Build failed'
+
+    post {
+        success {
+            echo 'Build successful'
+            archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
+        }
+        failure {
+            echo 'Build failed'
+        }
     }
-  }
 }
