@@ -25,11 +25,20 @@ A lightweight foundational SDK for Minecraft Fabric mods. Provides essential uti
 
 ## Installation
 
+### Using GitHub Packages
+
 Add LunarCore as a dependency to your `build.gradle`:
 
 ```gradle
 repositories {
-    maven { url = "https://your-maven-repo.com" }
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/LunarBit-dev/LunarCore-fabric")
+        credentials {
+            username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USER")
+            password = project.findProperty("gpr.token") ?: System.getenv("GITHUB_TOKEN")
+        }
+    }
 }
 
 dependencies {
